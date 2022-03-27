@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/wyork63/wy-socialnetwork/issues"
   },
-  "homepage": "https://github.com/wyork63/wy-socialnetwork#readme"
+  "homepage": "https://github.com/wyork63/wy-socialnetwork#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.8"
+  }
 }
