@@ -1,0 +1,20 @@
+{
+  "name": "wy-socialnetwork",
+  "version": "1.0.0",
+  "description": "Module 18 challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wyork63/wy-socialnetwork.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wyork63/wy-socialnetwork/issues"
+  },
+  "homepage": "https://github.com/wyork63/wy-socialnetwork#readme"
+}
