@@ -57,8 +57,25 @@ const thoughtController = {
       },
 
     // create a reaction stored in a single thoughts reaction array  
+    async addReaction({ params, body }, res) {
+        try {
+          const dbReaction = await Thought.findOneAndUpdate({ _id: params.thoughtId }, { $push: { reactions: body } }, { new: true, runValidator: true });
+          if (!dbReaction) return res.status(404).json({ message: "No thought found with this id" });
+          res.json({ dbReaction, message: "The reaction was created successfully" });
+        } catch (err) {
+          res.status(500).json(err);
+        }
+      },
 
     // delete a reaction by its id 
+    async removeReaction({ params }, res) {
+        try {
+          const dbReaction = await Thought.findOneAndUpdate({ _id: params.thoughtId }, { $pull: { reactions: { reactionId: params.reactionId } } }, { new: true });
+          res.json({ dbReaction, message: "The reaction was removed successfully" });
+        } catch (err) {
+          res.status(500).json(err);
+        }
+      },
   };
 
 module.exports = thoughtController;
