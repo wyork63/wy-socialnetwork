@@ -24,10 +24,37 @@ const thoughtController = {
       },
 
     // get a thought by id /api/thoughts/:id
+    async getSingleThought({ params }, res) {
+        try {
+          const dbThought = await Thought.findOne({ _id: params.id }).populate({ path: "reactions", select: "-__v" }).select("-__v");
+          if (!dbThought) return res.status(404).json({ message: "No thought found with this id" });
+          res.json(dbThought);
+        } catch (err) {
+          res.status(500).json(err);
+        }
+      },
 
     // update a thought by id 
+    async updateSingleThought({ params, body }, res) {
+        try {
+          const dbThought = await Thought.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidator: true });
+          if (!dbThought) return res.status(404).json({ message: "No thought found with this id" });
+          res.json({ dbThought, message: "The thought was updated successfully" });
+        } catch (err) {
+          res.status(500).json(err);
+        }
+      },
 
     // delete a thought by id 
+    async removeThought({ params }, res) {
+        try {
+          const dbThought = await Thought.findOneAndDelete({ _id: params.id });
+          if (!dbThought) return res.status(404).json({ message: "No thought found with this id!" });
+          res.json({ dbThought, message: "The thought was removed successfully" });
+        } catch (err) {
+          res.status(500).json(err);
+        }
+      },
 
     // create a reaction stored in a single thoughts reaction array  
 
